@@ -19,12 +19,12 @@ const TabsContainer = () => {
 
 const Tab = ({ tab }) => {
   return (
-    <div className="w-64 border border-gray-300 rounded-lg">
-      <div className="inline flex justify-between p-4 border-b">
+    <div className="w-64 rounded-lg">
+      <div className="inline flex justify-between p-4 border-l-4 border-violet-400 bg-violet-100">
         <h3 className="text-xl font-bold">{tab.name}</h3>
         <AddNoteButton tabId={tab.id} />
       </div>
-      <div className="p-4">
+      <div className="pt-4">
         <div className="grid grid-cols-1 gap-4">
           {tab.notes
             .slice()
@@ -42,12 +42,25 @@ const Tab = ({ tab }) => {
 
 const AddTabButton = ({ addTab }) => {
   return (
-    <div className="w-16 flex content-between justify-center">
+    <div className="w-16 flex items-start justify-center">
       <button
         onClick={addTab}
-        className="p-2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"
+        className="p-4 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"
       >
-        <FaPlus />
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="size-8"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+          />
+        </svg>
       </button>
     </div>
   );

@@ -67,52 +67,55 @@ export default function Note({ note }) {
 
   // Render the Note component
   return (
-    <div className="note" style={{ background: selectedColor }}>
+    <div className="rounded-lg" style={{ background: selectedColor }}>
       <textarea
         ref={textareaRef}
         readOnly={!isEditMode}
         value={text}
         onChange={(e) => setText(e.target.value)}
+        className="caret-slate-500 bg-transparent border-none focus:outline-none w-full h-full resize-none border-transparent focus:border-transparent focus:ring-0"
       />
       <div className="footer">
-        <p className="date">{getDateString(note.timestamp)}</p>
-        {!isEditMode && (
-          <button onClick={(e) => setIsEditMode(true)}>
-            <FaEdit />
+        <div className="flex justify-evenly p-2">
+          <p className="text-gray-500 p-2">{getDateString(note.timestamp)}</p>
+          {!isEditMode && (
+            <button onClick={(e) => setIsEditMode(true)}>
+              <FaEdit />
+            </button>
+          )}
+          {isEditMode && (
+            <button onClick={handleSaveNote}>
+              <FaRegSave />
+            </button>
+          )}
+          <button onClick={(e) => deleteNote(note.id)}>
+            <FaRegTrashAlt />
           </button>
-        )}
-        {isEditMode && (
-          <button onClick={handleSaveNote}>
-            <FaRegSave />
-          </button>
-        )}
-        <button onClick={(e) => deleteNote(note.id)}>
-          <FaRegTrashAlt />
-        </button>
-        <Popover
-          aria-labelledby="color-popover"
-          content={
-            <div className="w-32 text-sm text-gray-500 dark:text-gray-400">
-              <div className="border-b border-gray-200 bg-gray-100 px-3 py-2 dark:border-gray-600 dark:bg-gray-700">
-                <div className="colors-input-list flex flex-wrap">
-                  {colors.map((color) => (
-                    <div className="color-input m-1" key={color}>
-                      <button
-                        className="w-6 h-6 rounded-full"
-                        style={{ background: color }}
-                        onClick={() => handleColorChange(color)}
-                      />
-                    </div>
-                  ))}
+          <Popover
+            aria-labelledby="color-popover"
+            content={
+              <div className="w-32 text-sm text-gray-500 dark:text-gray-400">
+                <div className="border-b border-gray-200 bg-gray-100 px-3 py-2 dark:border-gray-600 dark:bg-gray-700">
+                  <div className="colors-input-list flex flex-wrap">
+                    {colors.map((color) => (
+                      <div className="color-input m-1" key={color}>
+                        <button
+                          className="w-6 h-6 rounded-full"
+                          style={{ background: color }}
+                          onClick={() => handleColorChange(color)}
+                        />
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
-            </div>
-          }
-        >
-          <button>
-            <FaPalette />
-          </button>
-        </Popover>
+            }
+          >
+            <button>
+              <FaPalette />
+            </button>
+          </Popover>
+        </div>
       </div>
     </div>
   );

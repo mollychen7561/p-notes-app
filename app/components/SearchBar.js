@@ -10,7 +10,7 @@ const SearchBar = ({ onSearch }) => {
       <div className="relative rounded-full">
         <button
           type="submit"
-          className="absolute top-0 end-0 p-3.5  font-medium h-full text-gray-700 bg-white-100 rounded-full"
+          className="absolute top-0 end-0 p-3.5 pr-5 font-medium h-full text-gray-700 bg-white-100 rounded-full"
         >
           <svg
             className="w-3 h-3.5"
@@ -32,7 +32,7 @@ const SearchBar = ({ onSearch }) => {
         <input
           type="search"
           id="search-dropdown"
-          className="block p-2.5 w-full text-justify text-md text-gray-900 bg-white-100 rounded-full"
+          className="border-transparent focus:border-transparent focus:ring-0 block p-2.5 pl-5 w-full text-justify text-md text-gray-900 bg-violet-50 rounded-full"
           placeholder="Search notes..."
           // onChange={handleSearchChange}
         />

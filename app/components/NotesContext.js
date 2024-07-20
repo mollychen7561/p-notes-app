@@ -8,7 +8,13 @@ export const NotesContext = createContext();
 // Define the NotesProvider component
 export const NotesProvider = ({ children }) => {
   // Initialize the state with one tab containing an empty array of notes
-  const [tabs, setTabs] = useState([{ id: 1, name: "Tab 1", notes: [] }]);
+  const [tabs, setTabs] = useState([{ id: 1, name: "Work", notes: [] }]);
+
+  // notes data, to be used in notes
+  // const [notes, setNotes] = useState(() => {
+  //   const notes = localStorage.getItem("notes-data");
+  //   return notes ? JSON.parse(notes) : [];
+  // });
 
   // Function to add a new note to a specific tab
   const addNote = (tabId, theme) => {
@@ -80,7 +86,7 @@ export const NotesProvider = ({ children }) => {
   const addTab = () => {
     const newTab = {
       id: tabs.length + 1, // Use the next available ID
-      name: `Tab ${tabs.length + 1}`,
+      name: `New Tab`,
       notes: []
     };
     setTabs([...tabs, newTab]);
