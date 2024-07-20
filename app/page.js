@@ -10,7 +10,7 @@ export default function HomePage() {
       <div className="w-full h-full">
         <div className="grid grid-cols-4 gap-5 p-12">
           <div className="col-span-2">
-            <h1 className="text-4xl font-bold tracking-wide bg-white-100">
+            <h1 className="text-5xl font-bold tracking-wide bg-white-100">
               NOTES
             </h1>
           </div>

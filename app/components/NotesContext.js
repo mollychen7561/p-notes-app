@@ -1,95 +1,101 @@
 "use client";
 
-import { createContext, useState } from "react";
+import { createContext, useState, useEffect } from "react";
 
 // Create a new context for managing notes
 export const NotesContext = createContext();
 
 // Define the NotesProvider component
 export const NotesProvider = ({ children }) => {
-  // Initialize the state with one tab containing an empty array of notes
-  const [tabs, setTabs] = useState([{ id: 1, name: "Work", notes: [] }]);
+  // Initialize the state with saved tabs from localStorage or default tab
+  const [tabs, setTabs] = useState(() => {
+    const savedTabs = localStorage.getItem("notes-tabs");
+    return savedTabs
+      ? JSON.parse(savedTabs)
+      : [{ id: 1, name: "Work", notes: [] }];
+  });
 
-  // notes data, to be used in notes
-  // const [notes, setNotes] = useState(() => {
-  //   const notes = localStorage.getItem("notes-data");
-  //   return notes ? JSON.parse(notes) : [];
-  // });
+  // Save tabs to localStorage whenever they change
+  useEffect(() => {
+    localStorage.setItem("notes-tabs", JSON.stringify(tabs));
+  }, [tabs]);
 
   // Function to add a new note to a specific tab
   const addNote = (tabId, theme) => {
-    setTabs(
-      tabs.map((tab) =>
-        tab.id === tabId
-          ? {
-              ...tab,
-              notes: [
-                ...tab.notes,
-                {
-                  id: Date.now(), // Use the current timestamp as the note ID
-                  text: "",
-                  theme,
-                  timestamp: Date.now(),
-                  editmode: true // Set the note to edit mode initially
-                }
-              ]
-            }
-          : tab
-      )
+    const newTabs = tabs.map((tab) =>
+      tab.id === tabId
+        ? {
+            ...tab,
+            notes: [
+              ...tab.notes,
+              {
+                id: Date.now(),
+                text: "",
+                theme,
+                timestamp: Date.now(),
+                editmode: true
+              }
+            ]
+          }
+        : tab
     );
+    setTabs(newTabs);
   };
 
   // Function to save changes to a specific note
   const saveNote = (tabId, noteId, text) => {
-    setTabs(
-      tabs.map((tab) =>
-        tab.id === tabId
-          ? {
-              ...tab,
-              notes: tab.notes.map((note) =>
-                note.id === noteId ? { ...note, text, editmode: false } : note
-              )
-            }
-          : tab
-      )
+    const newTabs = tabs.map((tab) =>
+      tab.id === tabId
+        ? {
+            ...tab,
+            notes: tab.notes.map((note) =>
+              note.id === noteId ? { ...note, text, editmode: false } : note
+            )
+          }
+        : tab
     );
+    setTabs(newTabs);
   };
 
   // Function to delete a specific note
   const deleteNote = (tabId, noteId) => {
-    setTabs(
-      tabs.map((tab) =>
-        tab.id === tabId
-          ? { ...tab, notes: tab.notes.filter((note) => note.id !== noteId) }
-          : tab
-      )
+    const newTabs = tabs.map((tab) =>
+      tab.id === tabId
+        ? { ...tab, notes: tab.notes.filter((note) => note.id !== noteId) }
+        : tab
     );
+    setTabs(newTabs);
   };
 
   // Function to update the color theme of a specific note
   const updateNoteColor = (tabId, noteId, color) => {
-    setTabs(
-      tabs.map((tab) =>
-        tab.id === tabId
-          ? {
-              ...tab,
-              notes: tab.notes.map((note) =>
-                note.id === noteId ? { ...note, theme: color } : note
-              )
-            }
-          : tab
-      )
+    const newTabs = tabs.map((tab) =>
+      tab.id === tabId
+        ? {
+            ...tab,
+            notes: tab.notes.map((note) =>
+              note.id === noteId ? { ...note, theme: color } : note
+            )
+          }
+        : tab
     );
+    setTabs(newTabs);
   };
 
   // Function to add a new tab
   const addTab = () => {
     const newTab = {
-      id: tabs.length + 1, // Use the next available ID
+      id: Date.now(),
       name: `New Tab`,
       notes: []
     };
     setTabs([...tabs, newTab]);
+  };
+
+  // Function to delete a tab
+  const deleteTab = (tabId) => {
+    const newTabs = tabs.filter((tab) => tab.id !== tabId);
+    setTabs(newTabs);
   };
 
   // Provide the NotesContext value with the necessary functions and state
@@ -101,7 +107,8 @@ export const NotesProvider = ({ children }) => {
         saveNote,
         deleteNote,
         updateNoteColor,
-        addTab
+        addTab,
+        deleteTab
       }}
     >
       {children}

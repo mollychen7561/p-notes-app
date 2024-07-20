@@ -9,7 +9,7 @@ import { Popover } from "flowbite-react"; // Import the Popover component from F
 const colors = ["#F2B5B9", "#F0D9A2", "#BFEAE6", "#DEE8F4", "#D1CCF5"];
 
 // Define the Note component
-export default function Note({ note }) {
+export default function Note({ note, tabId }) {
   // Get the necessary functions and state from the NotesContext
   const { saveNote, deleteNote, updateNoteColor } = useContext(NotesContext);
 
@@ -76,8 +76,10 @@ export default function Note({ note }) {
         className="caret-slate-500 bg-transparent border-none focus:outline-none w-full h-full resize-none border-transparent focus:border-transparent focus:ring-0"
       />
       <div className="footer">
-        <div className="flex justify-evenly p-2">
-          <p className="text-gray-500 p-2">{getDateString(note.timestamp)}</p>
+        <div className="flex justify-evenly p-3">
+          <p className="text-gray-500 pr-4 text-sm font-medium">
+            {getDateString(note.timestamp)}
+          </p>
           {!isEditMode && (
             <button onClick={(e) => setIsEditMode(true)}>
               <FaEdit />
@@ -88,7 +90,7 @@ export default function Note({ note }) {
               <FaRegSave />
             </button>
           )}
-          <button onClick={(e) => deleteNote(note.id)}>
+          <button onClick={(e) => deleteNote(tabId, note.id)}>
             <FaRegTrashAlt />
           </button>
           <Popover

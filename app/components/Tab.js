@@ -5,7 +5,7 @@ import AddNoteButton from "./AddNoteButton";
 import { FaPlus } from "react-icons/fa";
 
 const TabsContainer = () => {
-  const { tabs, addTab } = useContext(NotesContext);
+  const { tabs, addTab, deleteTab } = useContext(NotesContext);
 
   return (
     <div className="grid grid-flow-col gap-4">
@@ -23,6 +23,7 @@ const Tab = ({ tab }) => {
       <div className="inline flex justify-between p-4 border-l-4 border-violet-400 bg-violet-100">
         <h3 className="text-xl font-bold">{tab.name}</h3>
         <AddNoteButton tabId={tab.id} />
+        {/* <DeleteTabButton tabId={tab.id} /> */}
       </div>
       <div className="pt-4">
         <div className="grid grid-cols-1 gap-4">
