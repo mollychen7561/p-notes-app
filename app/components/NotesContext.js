@@ -1,5 +1,3 @@
-"use client";
-
 import { createContext, useState, useEffect } from "react";
 
 // Create a new context for managing notes
@@ -17,6 +15,9 @@ export const NotesProvider = ({ children }) => {
     }
     return [{ id: 1, name: "Work", notes: [] }];
   });
+
+  // Define the search term state
+  const [searchTerm, setSearchTerm] = useState("");
 
   // Save tabs to localStorage whenever they change
   useEffect(() => {
@@ -49,7 +50,6 @@ export const NotesProvider = ({ children }) => {
 
   // Function to save changes to a specific note
   const saveNote = (tabId, noteId, text) => {
-    console.log("Saving note:", { tabId, noteId, text });
     const newTabs = tabs.map((tab) =>
       tab.id === tabId
         ? {
@@ -75,7 +75,6 @@ export const NotesProvider = ({ children }) => {
 
   // Function to update the color theme of a specific note
   const updateNoteColor = (tabId, noteId, color) => {
-    console.log("Updating note color:", { tabId, noteId, color });
     const newTabs = tabs.map((tab) =>
       tab.id === tabId
         ? {
@@ -105,6 +104,28 @@ export const NotesProvider = ({ children }) => {
     setTabs(newTabs);
   };
 
+  // Function to update a tab name
+  const updateTabName = (tabId, newName) => {
+    const newTabs = tabs.map((tab) =>
+      tab.id === tabId ? { ...tab, name: newName } : tab
+    );
+    setTabs(newTabs);
+  };
+
+  // Function to update the search term
+  const updateSearchTerm = (term) => {
+    setSearchTerm(term);
+  };
+
+  // Filter notes based on the search term
+  const filteredNotes = tabs.flatMap((tab) =>
+    tab.notes
+      .filter((note) =>
+        note.text.toLowerCase().includes(searchTerm.toLowerCase())
+      )
+      .map((note) => ({ ...note, tabName: tab.name }))
+  );
+
   // Provide the NotesContext value with the necessary functions and state
   return (
     <NotesContext.Provider
@@ -115,7 +136,11 @@ export const NotesProvider = ({ children }) => {
         deleteNote,
         updateNoteColor,
         addTab,
-        deleteTab
+        deleteTab,
+        updateTabName,
+        searchTerm,
+        updateSearchTerm,
+        filteredNotes
       }}
     >
       {children}

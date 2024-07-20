@@ -73,10 +73,10 @@ export default function Note({ note, tabId }) {
         readOnly={!isEditMode}
         value={text}
         onChange={(e) => setText(e.target.value)}
-        className="caret-slate-500 bg-transparent border-none focus:outline-none w-full h-full resize-none border-transparent focus:border-transparent focus:ring-0"
+        className="px-8 py-10 caret-slate-500 bg-transparent border-none focus:outline-none w-full h-full resize-none border-transparent focus:border-transparent focus:ring-0"
       />
       <div className="footer">
-        <div className="flex justify-evenly p-3">
+        <div className="flex justify-evenly p-2">
           <p className="text-gray-500 pr-4 text-sm font-medium">
             {getDateString(note.timestamp)}
           </p>

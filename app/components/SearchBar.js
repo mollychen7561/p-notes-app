@@ -1,7 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 
+// Define the SearchBar component
 const SearchBar = ({ onSearch }) => {
+  const [searchTerm, setSearchTerm] = useState("");
+
   const handleSearchChange = (e) => {
+    setSearchTerm(e.target.value);
     onSearch(e.target.value);
   };
 
@@ -33,12 +37,12 @@ const SearchBar = ({ onSearch }) => {
           type="search"
           id="search-dropdown"
           className="border-transparent focus:border-transparent focus:ring-0 block p-2.5 pl-5 w-full text-justify text-md text-gray-900 bg-violet-50 rounded-full"
-          placeholder="Search notes..."
-          // onChange={handleSearchChange}
+          placeholder="Search notes…"
+          value={searchTerm}
+          onChange={handleSearchChange}
         />
       </div>
     </div>
   );
 };
-
 export default SearchBar;

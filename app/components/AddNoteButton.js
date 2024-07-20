@@ -7,6 +7,7 @@ import { FaPlus } from "react-icons/fa";
 
 const defaultColor = "rgba(0, 0, 0, 0.1)";
 
+// Define the AddNoteButton component
 export default function AddNoteButton({ tabId }) {
   const { addNote } = useContext(NotesContext);
 
