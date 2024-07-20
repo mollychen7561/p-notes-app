@@ -9,15 +9,20 @@ export const NotesContext = createContext();
 export const NotesProvider = ({ children }) => {
   // Initialize the state with saved tabs from localStorage or default tab
   const [tabs, setTabs] = useState(() => {
-    const savedTabs = localStorage.getItem("notes-tabs");
-    return savedTabs
-      ? JSON.parse(savedTabs)
-      : [{ id: 1, name: "Work", notes: [] }];
+    if (typeof window !== "undefined") {
+      const savedTabs = localStorage.getItem("notes-tabs");
+      return savedTabs
+        ? JSON.parse(savedTabs)
+        : [{ id: 1, name: "Work", notes: [] }];
+    }
+    return [{ id: 1, name: "Work", notes: [] }];
   });
 
   // Save tabs to localStorage whenever they change
   useEffect(() => {
-    localStorage.setItem("notes-tabs", JSON.stringify(tabs));
+    if (typeof window !== "undefined") {
+      localStorage.setItem("notes-tabs", JSON.stringify(tabs));
+    }
   }, [tabs]);
 
   // Function to add a new note to a specific tab

@@ -1,3 +1,4 @@
+import ClientNotesProvider from "./components/ClientNotesProvider";
 import { Inconsolata } from "next/font/google";
 import "./globals.css";
 
@@ -11,7 +12,10 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={inconsolata.className}>{children}</body>
+      <body className={inconsolata.className}>
+        {" "}
+        <ClientNotesProvider>{children}</ClientNotesProvider>
+      </body>
     </html>
   );
 }
