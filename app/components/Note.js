@@ -23,13 +23,13 @@ export default function Note({ note, tabId }) {
 
   // Function to save the changes made to the note
   const handleSaveNote = () => {
-    saveNote(note.id, text);
+    saveNote(tabId, note.id, text);
     setIsEditMode(false);
   };
 
   // Function to update the color of the note
   const handleColorChange = (color) => {
-    updateNoteColor(note.id, color);
+    updateNoteColor(tabId, note.id, color);
     setSelectedColor(color);
   };
 

@@ -49,6 +49,7 @@ export const NotesProvider = ({ children }) => {
 
   // Function to save changes to a specific note
   const saveNote = (tabId, noteId, text) => {
+    console.log("Saving note:", { tabId, noteId, text });
     const newTabs = tabs.map((tab) =>
       tab.id === tabId
         ? {
@@ -74,6 +75,7 @@ export const NotesProvider = ({ children }) => {
 
   // Function to update the color theme of a specific note
   const updateNoteColor = (tabId, noteId, color) => {
+    console.log("Updating note color:", { tabId, noteId, color });
     const newTabs = tabs.map((tab) =>
       tab.id === tabId
         ? {
