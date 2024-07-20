@@ -9,7 +9,7 @@ This is a simple note-taking application built with React.js, Next.js, and Tailw
 - Customize note colors
 - Note data is saved locally and can be used without logging in
 
-<center><img src="https://github.com/user-attachments/assets/db73899c-9ef7-4cda-ba5e-93d55872bde4" width="60%"/></center>
+https://github.com/user-attachments/assets/db73899c-9ef7-4cda-ba5e-93d55872bde4
 
 
 ## Demo Link
