@@ -14,8 +14,7 @@ https://github.com/user-attachments/assets/db73899c-9ef7-4cda-ba5e-93d55872bde4
 
 ## Demo Link
 > Vercel: [https://p-notes-2otahdo7f-mollychen7561s-projects.vercel.app/](https://p-notes-2otahdo7f-mollychen7561s-projects.vercel.app/)
-> 
-> Github Pages: 
+
 
 ## Tools
 - JavaScript
