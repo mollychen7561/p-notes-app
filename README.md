@@ -1,6 +1,7 @@
 # React Notes Side Project 
 ## Description
 This is a simple note-taking application built with React.js, Next.js, and Tailwind CSS. It allows users to create, edit, organize, and search their notes.
+<center><img src="https://github.com/user-attachments/assets/5f455276-51a2-43cc-aee4-5782396b787a" width="60%"/></center>
 
 ## Function 
 - Create and manage multiple note tags (tabs)
@@ -10,9 +11,9 @@ This is a simple note-taking application built with React.js, Next.js, and Tailw
 
 <center><img src="https://github.com/user-attachments/assets/5f455276-51a2-43cc-aee4-5782396b787a" width="60%"/></center>
 
-
 ## Demo Link
 > Vercel: [https://p-notes-2otahdo7f-mollychen7561s-projects.vercel.app/](https://p-notes-2otahdo7f-mollychen7561s-projects.vercel.app/)
+> 
 > Github Pages: 
 
 ## Tools
